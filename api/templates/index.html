@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>{{ title }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.3.1/css/all.min.css">
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+    <script src="{{url_for('static', filename='sweetalert.js')}}"></script>
+</head>
+
+<body>
+
+    <!-- Getting Flashed Messages from Flask -->
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <!-- Using sweet-alert's swal function -->
+    <script> swal("{{messages[0]}}", "{{messages[1]}}", "{{messages[2]}}") </script>
+    {% endif %}
+    {% endwith %}
+
+    <!-- Overall Body Container -->
+    <div class="container-body100">
+
+        <!-- Form/Game Container  -->
+        <div class="game-wrap100 p-t-50 p-b-90 p-l-50 p-r-50">
+
+            <!--Form Starts -->
+            <form class="game100-form flex-sb flex-w" action="/guess" method="post">
+
+                <span class="game100-form-title">
+                    <a>
+                        <i class="fas fa-dice"></i>
+                    </a>
+
+                    <h1>Can you guess the number??(0-999)</h1>
+                </span>
+
+                <div class="wrap-input100 m-b-16">
+                    <input class="input100" type="number" min="1" max="999" name="user_answer" placeholder="(0-999)">
+                    <span class="focus-input100"></span>
+                </div>
+
+                <div class="container-game-btn m-t-17">
+                    <div class="w-full beforeNone text-center">
+                        <button type="submit" class="nv-login-submit game-submit-btn" name="submit">SUBMIT</button>
+                    </div>
+                </div>
+
+                <!-- game-result div gets game result or details from Flask app -->
+                <div class="container-game-btn m-t-17 game-result">
+                    <p>You have {{trials_left}} trials left</p>
+                    <p class="response">{{response}}</p>
+                </div>
+
+            </form>
+
+            <!-- Restart Button -->
+            <div class="container-game-btn m-t-17 restart-btn">
+                <a href="{{ url_for('restart') }}"><button>Restart</button></a>
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
