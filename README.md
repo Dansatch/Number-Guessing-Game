@@ -54,9 +54,6 @@ python app.py
 3. Continue guessing until you correctly guess the number.
 4. Once you have guessed the number, you can reset the game to play again.
 
-## Contributing
-Contributions are welcome! If you'd like to contribute to the Number Guessing Game, please fork the repository and submit a pull request with your changes.
-
 ## License
 
 Feel free to customize this template according to your specific project details and requirements!
